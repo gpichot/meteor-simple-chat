@@ -1,0 +1,77 @@
+<head>
+    <title>Meteor Chat</title>
+
+</head>
+
+<body>
+    <nav class="navbar navbar-inverse" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Meteor Chat</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+        </div>
+    </div>
+    </nav>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-2 sidebar">
+                {{>loginButtons }}
+                <ul class="nav nav-sidebar">
+                    <li class="header">
+                    Users
+                    </li>
+                    {{#each users}}
+                    {{>user }}
+                    {{/each}}
+                </ul>
+            </div>
+            <div class="col-lg-9">
+                <table class="table table-hovered table-striped">
+                    <thead>
+                        <tr>
+                            <td>
+                            </td>
+                            <td>
+                                <form class="new-message">
+                                    <input type="text" name="text" placeholder="Add a message" />
+                                </form>
+                            </td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each messages}}
+                        {{>message}}
+                        {{/each}}
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</body>
+
+<template name="user">
+<li class="{{status}}">
+{{#if services.google }}
+{{ services.google.name }}
+{{/if}}
+{{#if services.github }}
+{{ services.github.username }}
+{{/if }}
+</li>
+</template>
+
+<template name="message">
+<tr>
+    <td class="col-author">{{author}}</td>
+    <td>{{text}}</td>
+</tr>
+</template>
